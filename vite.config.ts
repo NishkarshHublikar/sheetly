@@ -8,7 +8,7 @@ export default defineConfig({
 
   //--- Nitro preset for Vercel ---------------------------------------------------
   nitro: {
-    preset: "vercel",
+    preset: "netlify",
   },
 
   //--- Vite options (Nitro will handle the static output) -----------------------
