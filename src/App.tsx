@@ -1,4 +1,4 @@
-import { NavLink, Route, Routes } from "react-router-dom";
+import { Link, Outlet } from "@tanstack/react-router";
 import { BarChart3 } from "lucide-react";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
@@ -9,27 +9,24 @@ export default function App() {
     <div className="app">
       <header className="nav">
         <div className="container nav-inner">
-          <NavLink to="/" className="brand">
+          <Link to="/" className="brand">
             <span className="brand-logo"><BarChart3 size={18} /></span>
             Sheetly
-          </NavLink>
+          </Link>
           <nav className="nav-links">
-            <NavLink to="/" end>Home</NavLink>
-            <NavLink to="/dashboard">Dashboard</NavLink>
-            <NavLink to="/about">About</NavLink>
-            <NavLink to="/dashboard" className="btn primary" style={{ marginLeft: 8 }}>
+            <Link to="/" activeProps={{ className: "active" }}>Home</Link>
+            <Link to="/dashboard" activeProps={{ className: "active" }}>Dashboard</Link>
+            <Link to="/about" activeProps={{ className: "active" }}>About</Link>
+            <Link to="/dashboard" className="btn primary" style={{ marginLeft: 8 }} activeProps={{}}>
               Launch App
-            </NavLink>
+            </Link>
           </nav>
         </div>
       </header>
 
       <main style={{ flex: 1 }}>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
+        {/* TanStack router renders the matched route here */}
+        <Outlet />
       </main>
 
       <footer className="footer">

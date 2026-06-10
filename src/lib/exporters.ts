@@ -1,5 +1,5 @@
 import * as XLSX from "xlsx";
-import { saveAs } from "file-saver";
+import saveAs from "file-saver";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import type { ColumnInfo, Row } from "./analytics";

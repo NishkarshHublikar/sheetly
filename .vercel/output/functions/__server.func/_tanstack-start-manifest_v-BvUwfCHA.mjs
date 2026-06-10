@@ -1,0 +1,4 @@
+const tsrStartManifest = () => ({ routes: { __root__: { filePath: "C:/dev/sheetly/src/routes/__root.tsx", children: ["/", "/about", "/dashboard"], preloads: ["/assets/index-CVvgAvdY.js"], scripts: [{ attrs: { type: "module", async: true, src: "/assets/index-CVvgAvdY.js" } }] }, "/": { filePath: "C:/dev/sheetly/src/routes/index.tsx", children: void 0, preloads: ["/assets/index-DNRz5NO8.js", "/assets/upload-WHbNCS02.js"] }, "/about": { filePath: "C:/dev/sheetly/src/routes/about.tsx", children: void 0, preloads: ["/assets/about-D6jRgMln.js", "/assets/file-text-BeY3PJTs.js"] }, "/dashboard": { filePath: "C:/dev/sheetly/src/routes/dashboard.tsx", children: void 0, preloads: ["/assets/dashboard--dQUfvO4.js", "/assets/upload-WHbNCS02.js", "/assets/file-text-BeY3PJTs.js"] } } });
+export {
+  tsrStartManifest
+};
