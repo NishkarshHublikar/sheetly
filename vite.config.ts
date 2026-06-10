@@ -3,7 +3,6 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 export default defineConfig({
   //--- TanStack‑Start integration -------------------------------------------------
   tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR wrapper)
     server: { entry: "server" },
   },
 
@@ -12,6 +11,16 @@ export default defineConfig({
     preset: "vercel",
   },
 
-  // DELETE the manual build and viteStaticCopy plugin blocks entirely!
-  // TanStack Start handles this under the hood.
+  //--- Vite-specific build options (wrapped under "vite") -----------------------
+  vite: {
+    build: {
+      outDir: ".vercel/output/static",
+      emptyOutDir: true,
+      rollupOptions: {
+        input: "index.html",
+      },
+    },
+  },
+
+  // No plugins needed – TanStack Start handles copying if required
 });
