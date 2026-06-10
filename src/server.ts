@@ -63,6 +63,13 @@ export default {
       return new Response(data, { headers: { "Content-Type": contentType } });
     }
 
+    // If no static file matched, fall back to SPA index.html for client-side routing
+    const indexPath = path.join(process.cwd(), ".vercel", "output", "static", "index.html");
+    if (fs.existsSync(indexPath)) {
+      const data = fs.readFileSync(indexPath);
+      return new Response(data, { headers: { "Content-Type": "text/html" } });
+    }
+
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
