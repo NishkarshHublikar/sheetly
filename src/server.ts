@@ -1,6 +1,4 @@
 import "./lib/error-capture";
-import fs from "node:fs";
-import path from "node:path";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
@@ -41,35 +39,6 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
 
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
-    // Serve static assets from the Nitro output before falling back to SSR
-    const url = new URL(request.url);
-    // Remove leading '/' so path.join works correctly
-    const relativePath = url.pathname.replace(/^\//, "");
-    const staticPath = path.join(process.cwd(), ".vercel", "output", "static", relativePath);
-    if (fs.existsSync(staticPath) && fs.statSync(staticPath).isFile()) {
-      const ext = path.extname(staticPath);
-      const mimeMap: Record<string, string> = {
-        ".js": "application/javascript",
-        ".mjs": "application/javascript",
-        ".css": "text/css",
-        ".json": "application/json",
-        ".svg": "image/svg+xml",
-        ".png": "image/png",
-        ".jpg": "image/jpeg",
-        ".html": "text/html",
-      };
-      const contentType = mimeMap[ext] ?? "application/octet-stream";
-      const data = fs.readFileSync(staticPath);
-      return new Response(data, { headers: { "Content-Type": contentType } });
-    }
-
-    // If no static file matched, fall back to SPA index.html for client-side routing
-    const indexPath = path.join(process.cwd(), ".vercel", "output", "static", "index.html");
-    if (fs.existsSync(indexPath)) {
-      const data = fs.readFileSync(indexPath);
-      return new Response(data, { headers: { "Content-Type": "text/html" } });
-    }
-
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);

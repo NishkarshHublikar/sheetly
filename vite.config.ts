@@ -11,15 +11,9 @@ export default defineConfig({
     preset: "vercel",
   },
 
-  //--- Vite-specific build options (wrapped under "vite") -----------------------
+  //--- Vite options (Nitro will handle the static output) -----------------------
   vite: {
-    build: {
-      outDir: ".vercel/output/static",
-      emptyOutDir: true,
-      rollupOptions: {
-        input: "index.html",
-      },
-    },
+    // Add other Vite options here if needed (e.g., plugins, alias, etc.)
   },
 
   // No plugins needed – TanStack Start handles copying if required
