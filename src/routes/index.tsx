@@ -1,14 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
-import Landing from "../pages/Landing";
+
+function TestPage() {
+  return (
+    <div style={{ padding: 40 }}>
+      <h1 style={{ color: "red" }}>
+        SSR TEST SUCCESS
+      </h1>
+    </div>
+  );
+}
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Sheetly - Excel Automation" },
-      { name: "description", content: "Turn spreadsheets into insights & reports in seconds." },
-      { property: "og:title", content: "Sheetly" },
-      { property: "og:description", content: "Turn spreadsheets into insights & reports in seconds." },
-    ],
-  }),
-  component: Landing,
+  component: TestPage,
 });
